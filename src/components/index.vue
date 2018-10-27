@@ -1,23 +1,23 @@
 <template>
     <div class="f-nav">
         <!-- 轮播图 -->
-            <van-swipe :autoplay="5000">
-                <van-swipe-item  v-for="image in images" :key="image">
-                    <img class="f-nav-img" :src="image" alt="">
-                </van-swipe-item>
-            </van-swipe>
-             <!-- 两端对齐 -->
-             <div class="nav-list">
-                <van-row type="flex" justify="space-around"  tag="ul">
-                    <van-col v-for=" navlist in navlists" :key="navlist.navtext"  span="10" tag="li">
-                        <router-link :to='navlist.url' class="nav-link">
-                            <img  :src="navlist.iconurl" alt="">   
-                            <span>{{navlist.navtext}}</span>
-                        </router-link>
-                    </van-col>
-                </van-row>
-            </div>
-        
+        <van-swipe :autoplay="5000">
+            <van-swipe-item v-for="image in images" :key="image">
+                <img class="f-nav-img" :src="image" alt="">
+            </van-swipe-item>
+        </van-swipe>
+        <!-- 两端对齐 -->
+        <div class="nav-list">
+            <van-row type="flex" justify="space-around" tag="ul">
+                <van-col v-for=" navlist in navlists" :key="navlist.navtext" span="10" tag="li">
+                    <router-link :to='navlist.url' class="nav-link">
+                        <img :src="navlist.iconurl" alt="">
+                        <span>{{navlist.navtext}}</span>
+                    </router-link>
+                </van-col>
+            </van-row>
+        </div>
+
     </div>
 </template>
 
@@ -35,32 +35,32 @@ export default {
         {
           iconurl: "../../static/ico_1.jpg",
           navtext: "患者简介",
-          url: { name: "Login" }
+          url: { name: "patient" }
         },
         {
           iconurl: "../../static/ico_2.jpg",
           navtext: "病例档案",
-          url: { name: "Login" }
+          url: { name: "M_case" }
         },
         {
           iconurl: "../../static/ico_3.jpg",
           navtext: "凝血指标",
-          url: { name: "Login" }
+          url: { name: "cruor" }
         },
         {
           iconurl: "../../static/ico_4.jpg",
           navtext: "疾病简介",
-          url: { name: "Login" }
+          url: { name: "illness" }
         },
         {
           iconurl: "../../static/ico_5.jpg",
           navtext: "住院情况",
-          url: { name: "Login" }
+          url: { name: "hospital" }
         },
         {
           iconurl: "../../static/ico_6.jpg",
           navtext: "手术概况",
-          url: { name: "Login" }
+          url: { name: "operation" }
         }
       ]
     };
@@ -98,7 +98,7 @@ export default {
   height: 45px;
 }
 .nav-list ul li span {
-  font-size: 15px;
+  font-size: 16px;
   padding-left: 8px;
 }
 </style>
