@@ -1,5 +1,9 @@
+  /**
+   * 公共路由>>>>>>
+   */
   import DD from './components/HelloWorld'
   import Login from './components/Login'
+
 
   /** 
    *  index>>>>>
@@ -21,14 +25,17 @@
    * 近况
    * 病史
    *  */
-
   import Home from './components/index'
   import recent from './components/recent'
   import M_history from './components/M_history'
 
+
+
+
+
   export const routes = [
     /**
-     * 公共路由
+     * 公共路由>>>>>>
      */
     {
       path: '/dd',
@@ -39,6 +46,9 @@
       name: 'Login',
       component: Login
     },
+
+
+
     /** 
      *  首页index>>>>>>
      * 患者简介、病例档案
