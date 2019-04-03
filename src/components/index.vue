@@ -75,7 +75,7 @@ export default {
       // this.getMenuItems = request.data.results;
       //将请求下来的数据存储到Vuex中
       this.$http
-        .get("classes/menu")
+        .get("menu")
         .then(request =>{
 console.log(request.data.results);
         }
