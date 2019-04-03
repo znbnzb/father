@@ -22,6 +22,7 @@
 </template>
 
 <script>
+
 export default {
   data() {
     return {
@@ -64,6 +65,25 @@ export default {
         }
       ]
     };
+  },
+  created(){
+  this.fectDate();
+  },
+  methods:{
+       fectDate() {
+      // this.$http.get("/menu").then(request => {
+      // this.getMenuItems = request.data.results;
+      //将请求下来的数据存储到Vuex中
+      this.$http
+        .get("classes/menu")
+        .then(request =>{
+console.log(request.data.results);
+        }
+        //   this.$store.commit("setMenuItems", request.data.results);
+          
+        );
+      
+    },
   }
 };
 </script>
