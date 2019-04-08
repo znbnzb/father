@@ -5,42 +5,44 @@
                 src="../assets/logo.png"
                 alt=""
             >
-            <p>我是</p>
+            <p>没有值</p>
+
         </div>
     </div>
 
 </template>
 
 <script>
+import { Toast } from "vant";
+import {apiAddress,apiAddress2} from '../request/api'
 export default {
     data() {
-        return {};
+        return {
+            setData: {
+                username: "admin",
+                password:'111111'
+            },
+            showa:'我是张乃彬'
+        };
     },
+ 
     created() {
-        this.getuser();
-        this.getusers();
-        this.changemyname();
+        // this.getuser();
+   
+        this.add(); //添加数据
     },
     methods: {
-        getuser() {
-            // this.$http.get("/menu").then(request => {
-            // this.getMenuItems = request.data.results;
-            //将请求下来的数据存储到Vuex中
-            this.$http.get("aaa",null).then(
-                request => {
-                    console.log(request.data.results);
-                }
-                //   this.$store.commit("setMenuItems", request.data.results);
-            );
-        },
-        getusers() {
-            var ccc = this.$store.getters.getChangedNum;
-        
-            console.log(ccc +'LOGIN');
 
-        },
-        changemyname(){
-            this.$store.commit('newNum',1);
+        add:function() {
+            var _this = this;
+            //  let tokenl= window.localStorage.getItem('token')
+        //  console.log(token)
+        //  console.log(tokenl+'本地的 ')
+         apiAddress(_this.setData).then(res=>{
+            //  this.$store.commit('usertoken',res.sessionToken);
+            console.log('已经登陆了')
+             this.$store.dispatch('setUserToken',res.sessionToken);
+         })
         }
 
     }

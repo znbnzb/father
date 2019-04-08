@@ -2,23 +2,23 @@ import Vue from 'vue'
 import axios from 'axios'
 import QS from 'qs';
 import store from '../store'
-
+import { Toast } from 'vant';
 
 /** 
  * 提示函数 
- * 禁止点击蒙层、显示一秒后关闭
+ * 禁止点击蒙层、显示5秒后关闭
  */
 const tip = msg => {
     Toast({
         message: msg,
-        duration: 1000,
+        duration: 5000,
         forbidClick: true
     });
 }
 
 const bomId = "9aa35c79101ae393a3cae8480f491f40";
 const bomkey = "7c3962ad543cdc756e5a3d1ba40be2c3";
-axios.defaults.headers.post["Content-type"] = 'application/x-www-form-urlencoded;charset=UTF-8';
+axios.defaults.headers.post["Content-type"] = 'application/json';
 axios.defaults.headers.post["X-Bmob-Application-Id"] = bomId;
 axios.defaults.headers.post["X-Bmob-REST-API-Key"] = bomkey;
 
@@ -26,30 +26,33 @@ axios.defaults.headers.post["X-Bmob-REST-API-Key"] = bomkey;
 axios.defaults.headers.delete["X-Bmob-Application-Id"] = bomId
 axios.defaults.headers.delete["X-Bmob-REST-API-Key"] = bomkey
 
-Vue.prototype.$http = axios;
 
 
 if (process.env.NODE_ENV == 'development') {
-    axios.defaults.baseURL = 'https://api.bmobcloud.com/1/classes/';
+    axios.defaults.baseURL = '/api'; //跨域 在 config/index.js 找到proxyTable
 } else if (process.env.NODE_ENV == 'debug') {
-    axios.defaults.baseURL = 'https://api.bmobcloud.com/1/classes/';
+    axios.defaults.baseURL = '/api';
 } else if (process.env.NODE_ENV == 'production') {
-    axios.defaults.baseURL = 'https://api.bmobcloud.com/1/classes/';
+    axios.defaults.baseURL = '/api';
 }
 
 axios.defaults.timeout = 10000; //请求超时
 
+
 axios.interceptors.request.use(
     config => {
+        var _this = this;
         // 每次发送请求之前判断是否存在token，如果存在，则统一在http请求的header都加上token，不用每次请求都手动添加了
         // 即使本地存在token，也有可能token是过期的，所以在响应拦截器中要对返回状态进行判断
         // const token = store.state.token;
-        // token && (config.headers.Authorization = token);
-        const token = store.getters.getMyName;
+        const token = store.state.token;
+        if (token) {
+            config.headers.Authorization = token
+        }
         // 将请求的配置上Bomb的官方配置
         config.headers.get["X-Bmob-Application-Id"] = bomId;
         config.headers.get["X-Bmob-REST-API-Key"] = bomkey;
-        console.log(token + 'zhang');
+
         return config;
     },
     error => {
@@ -60,6 +63,8 @@ axios.interceptors.request.use(
 axios.interceptors.response.use(
     response => {
         if (response.status === 200) {
+            return Promise.resolve(response);
+        } else if (response.status === 201) {
             return Promise.resolve(response);
         } else {
             return Promise.reject(response);
@@ -74,7 +79,7 @@ axios.interceptors.response.use(
                 // 在登录成功后返回当前页面，这一步需要在登录页操作。                
                 case 401:
                     router.replace({
-                        path: '/login',
+                        path: '/',
                         query: { redirect: router.currentRoute.fullPath }
                     });
                     break;
@@ -94,7 +99,7 @@ axios.interceptors.response.use(
                     // 跳转登录页面，并将要浏览的页面fullPath传过去，登录成功后跳转需要访问的页面
                     setTimeout(() => {
                         router.replace({
-                            path: '/login',
+                            path: '/',
                             query: {
                                 redirect: router.currentRoute.fullPath
                             }
@@ -132,6 +137,23 @@ export function get(url, params) {
         axios.get(url, {
                 params: params
             })
+            .then(res => {
+                resolve(res.data);
+            })
+            .catch(err => {
+                reject(err.data)
+            })
+    });
+}
+
+/** 
+ * post方法，对应post请求 
+ * @param {String} url [请求的url地址] 
+ * @param {Object} params [请求时携带的参数] 
+ */
+export function post(url, params) {
+    return new Promise((resolve, reject) => {
+        axios.post(url, QS.stringify(params))
             .then(res => {
                 resolve(res.data);
             })
