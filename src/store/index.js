@@ -41,7 +41,4 @@ const store = new Vuex.Store({ //新建一个实例
 });
 
 
-
-
-
 export default store; //暴露出去

@@ -1,12 +1,17 @@
 <template>
     <div>
         <p>近况：recent</p>
+        <foot1></foot1>
     </div>
 </template>
 
 <script>
+import foot1 from '../components/foot1'
 export default {
-  name: "recent"
+  name: "recent",
+  components:{
+      foot1
+  }
 };
 </script>
 

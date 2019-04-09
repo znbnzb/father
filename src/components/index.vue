@@ -28,22 +28,24 @@
                 >
                     <router-link
                         :to='navlist.url'
+ 
                         class="nav-link"
                     >
                         <img
                             :src="navlist.iconurl"
                             alt=""
                         >
-                        <span @click="getuser()">{{navlist.navtext}}</span>
+                        <span>{{navlist.navtext}}</span>
                     </router-link>
                 </van-col>
             </van-row>
         </div>
-
+   <foot1></foot1>
     </div>
 </template>
 
 <script>
+import foot1 from '../components/foot1'
 export default {
     data() {
         return {
@@ -95,6 +97,9 @@ export default {
             let v = this.$store.state.token;
             console.log(v + "新的");
         }
+    },
+    components:{
+        foot1
     }
 };
 </script>

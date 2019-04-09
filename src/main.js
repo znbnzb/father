@@ -10,7 +10,6 @@ import {
     Lazyload
 } from 'vant';
 // import axios from './request/api'
-import axios from './request/http'
 import store from './store' //引入store
 Vue.use(VueRouter)
 Vue.use(Vant)
@@ -28,6 +27,19 @@ const router = new VueRouter({
     mode: 'history'
 })
 
+router.beforeEach((to, from, next) => {
+    let token = localStorage.getItem('token')
+    if (to.path == '/Login') {
+        next()
+    } else {
+        if (token == '' || token == null) {
+            next('/Login');
+        } else {
+            next()
+        }
+    }
+
+})
 new Vue({
     el: '#app',
     store,

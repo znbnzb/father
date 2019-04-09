@@ -42,7 +42,7 @@
           name: 'dd',
           component: DD
       }, {
-          path: '/',
+          path: '/Login',
           name: 'Login',
           component: Login
       },
@@ -91,7 +91,7 @@
        * 病史
        *  */
       {
-          path: '/homeLink',
+          path: '/',
           name: "homeLink",
           component: Home
       },
