@@ -1,6 +1,6 @@
 <template>
     <van-row>
-        <van-col
+        <van-col v-if='isloading'
             span="20"
             class="login_wrap"
         >
@@ -39,7 +39,9 @@
             </div>
             
         </van-col>
-        
+        <div class="loading_warp" v-else>
+            <van-loading class="loading_item" />
+        </div>
     </van-row>
 </template>
 
@@ -53,7 +55,7 @@ export default {
                 username: "admin",
                 password: "111111"
             },
-            showa: "我是张乃彬"
+            isloading:true
         };
     },
 
@@ -61,6 +63,7 @@ export default {
 
     },
     methods: {
+     
         LoginUser: function() {
             var _this = this;
             if(_this.users.username ==='' || _this.users.password ==='' ){
@@ -69,13 +72,16 @@ export default {
                 apiAddress(_this.users).then(res => {
                 console.log(res);
                 window.localStorage.setItem('token', res.sessionToken);
-            
                 this.$store.dispatch("setUserToken", res.sessionToken);
-                _this.$router.push('/'); 
+                _this.isloading=false;
+                setTimeout(()=>{
+                    _this.$router.push('/'); 
+                },1000)
             });
-            }
-            
-        }
+            }  
+        },
+        
+      
     }
 };
 </script>
@@ -88,7 +94,7 @@ export default {
     align-items: center;
     width: 100%;
     height: 100%;
-    padding:18% 5% 2% 5%;
+    padding:15% 5% 2% 5%;
     position: fixed;
     background-image: url(../assets/bg2.png);
     /* background-color:lightgrey; */
@@ -118,5 +124,17 @@ export default {
 .login_wrap .login_btn {
     margin-top:7%;
     width:90%;
+}
+.loading_warp{
+    background-color:black;
+     position:fixed;
+    width:100%;
+    height:100%;
+    opacity: 0.2;
+}
+.loading_item{
+    position:absolute;
+     bottom:50%;margin-bottom:-h/2;
+ right:50%;margin-right:-w/2
 }
 </style>
