@@ -1,6 +1,6 @@
 <template>
     <van-row>
-        <van-col v-if='isloading'
+        <van-col
             span="20"
             class="login_wrap"
         >
@@ -39,9 +39,6 @@
             </div>
             
         </van-col>
-        <div class="loading_warp" v-else>
-            <van-loading class="loading_item" />
-        </div>
     </van-row>
 </template>
 
@@ -55,7 +52,7 @@ export default {
                 username: "admin",
                 password: "111111"
             },
-            isloading:true
+   
         };
     },
 
@@ -73,10 +70,14 @@ export default {
                 console.log(res);
                 window.localStorage.setItem('token', res.sessionToken);
                 this.$store.dispatch("setUserToken", res.sessionToken);
-                _this.isloading=false;
+                Toast.loading({
+                mask: true,
+                message: '登录成功',
+                duration:2000
+                });
                 setTimeout(()=>{
                     _this.$router.push('/'); 
-                },1000)
+                },2000)
             });
             }  
         },

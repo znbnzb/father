@@ -1,7 +1,6 @@
 <template>
     <div>
         <p>近况：recent</p>
-        <foot1></foot1>
     </div>
 </template>
 

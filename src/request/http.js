@@ -114,6 +114,13 @@ axios.interceptors.response.use(
                         forbidClick: true
                     });
                     break;
+                case 400:
+                    Toast({
+                        message: '请求失败',
+                        duration: 1500,
+                        forbidClick: true
+                    });
+                    break;
                     // 其他错误，直接抛出错误提示                
                 default:
                     Toast({

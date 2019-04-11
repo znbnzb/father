@@ -1,8 +1,8 @@
   /**
    * 公共路由>>>>>>
    */
-  import DD from './components/HelloWorld'
-  import Login from './components/Login'
+  import DD from '@/components/HelloWorld'
+  import Login from '@/components/Login'
 
 
   /** 
@@ -11,12 +11,12 @@
    * 凝血指标、疾病简介
    * 住院情况、手术概况
    *  */
-  import patient from './components/patient'
-  import M_case from './components/M_case'
-  import cruor from './components/cruor'
-  import illness from './components/illness'
-  import hospital from './components/hospital'
-  import operation from './components/operation'
+  import patient from '@/components/patient'
+  import M_case from '@/components/M_case'
+  import cruor from '@/components/cruor'
+  import illness from '@/components/illness'
+  import hospital from '@/components/hospital'
+  import operation from '@/components/operation'
 
 
   /**
@@ -25,9 +25,9 @@
    * 近况
    * 病史
    *  */
-  import Home from './components/index'
-  import recent from './components/recent'
-  import M_history from './components/M_history'
+  import Home from '@/components/index'
+  import recent from '@/components/recent'
+  import M_history from '@/components/M_history'
 
 
 
@@ -44,7 +44,8 @@
       }, {
           path: '/Login',
           name: 'Login',
-          component: Login
+          component: Login,
+          meta: { navShow: false }
       },
 
       /** 
@@ -56,32 +57,38 @@
       {
           path: '/patient',
           name: "patient",
-          component: patient
+          component: patient,
+          meta: { navShow: false }
       },
       {
           path: '/M_case',
           name: "M_case",
-          component: M_case
+          component: M_case,
+          meta: { navShow: false }
       },
       {
           path: '/cruor',
           name: "cruor",
-          component: cruor
+          component: cruor,
+          meta: { navShow: false }
       },
       {
           path: '/illness',
           name: "illness",
-          component: illness
+          component: illness,
+          meta: { navShow: false }
       },
       {
           path: '/hospital',
           name: "hospital",
-          component: hospital
+          component: hospital,
+          meta: { navShow: false }
       },
       {
           path: '/operation',
           name: "operation",
-          component: operation
+          component: operation,
+          meta: { navShow: false }
       },
 
       /**
@@ -94,6 +101,7 @@
           path: '/',
           name: "homeLink",
           component: Home
+
       },
       {
           path: '/recent',
