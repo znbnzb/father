@@ -1,23 +1,6 @@
 <template>
     <div>
-        <!-- title心脏瓣膜病患者 -->
-        <van-row>
-            <van-col span="24">
-                <van-nav-bar
-                    title="标题"
-                    left-text="返回"
-                    right-text="按钮"
-                    left-arrow
-                    @click-left="onClickLeft"
-                />
-                <van-cell-group>
-                    <van-cell
-                        class="t-icon"
-                        value="心脏瓣膜病患者"
-                    />
-                </van-cell-group>
-            </van-col>
-        </van-row>
+         <headTop title="患者简介"></headTop>
         <!-- 个人简介模块 -->
         <van-row class="patient">
             <van-col span="24">
@@ -39,19 +22,18 @@
 </template>
 
 <script>
+import headTop from './headerTop'
 export default {
     name: "patient",
     data() {
         return {
-            //   thumb: {}
+
         };
     },
-    methods: {
-        //   返回上一页
-        onClickLeft:function(){
-            this.$router.back(-1)
-        }
+    components:{
+        headTop
     }
+    
 };
 </script>
 

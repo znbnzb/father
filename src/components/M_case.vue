@@ -1,11 +1,17 @@
 <template>
     <div>
-        <p>病例档案CASE</p>
+       <headTop title="病例档案"></headTop>
     </div>
 </template>
 
 <script>
-export default {};
+import headTop from './headerTop'
+export default {
+
+    components:{
+        headTop
+    }
+};
 </script>
 
 <style scoped>
