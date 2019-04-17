@@ -1,27 +1,7 @@
 <template>
-
-        <!-- <van-tabbar v-model="active" @change="changes">
-            <van-tabbar-item
-                icon="search"
-                dot :to="{name:'homeLink'}"
-            >标签</van-tabbar-item>
-            <van-tabbar-item
-                icon="friends-o"
-                info="5"  :to="{name:'recent'}"
-            >标签</van-tabbar-item>
-            <van-tabbar-item
-                icon="setting-o"
-                info="20"  :to="{name:'M_history'}"
-            >标签</van-tabbar-item>
-        </van-tabbar> -->
-        <van-tabbar
-            v-model="active"
-            v-if="$route.meta.navShow==undefined||$route.meta.navShow"
-        >
-            <van-tabbar-item
-                icon="wap-home"
-                :to="{name:'homeLink'}"
-            >首页</van-tabbar-item>
+ <!-- 根据路由属性meta.navShaow来判断是否显示底部组件 -->
+        <van-tabbar v-model="active" active-color="#39d167" v-if="$route.meta.navShow==undefined||$route.meta.navShow" >
+            <van-tabbar-item icon="wap-home" :to="{name:'homeLink'}">首页</van-tabbar-item>
             <van-tabbar-item 
                 icon="clock"
                 :to="{name:'recent'}"

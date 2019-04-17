@@ -18,6 +18,8 @@ const tip = msg => {
 
 const bomId = "9aa35c79101ae393a3cae8480f491f40";
 const bomkey = "7c3962ad543cdc756e5a3d1ba40be2c3";
+const apis = process.env.API_ROOT;
+console.log(apis)
 axios.defaults.headers.post["Content-type"] = 'application/json';
 axios.defaults.headers.post["X-Bmob-Application-Id"] = bomId;
 axios.defaults.headers.post["X-Bmob-REST-API-Key"] = bomkey;
@@ -29,11 +31,11 @@ axios.defaults.headers.delete["X-Bmob-REST-API-Key"] = bomkey
 
 
 if (process.env.NODE_ENV == 'development') {
-    axios.defaults.baseURL = '/api'; //跨域 在 config/index.js 找到proxyTable
+    axios.defaults.baseURL = apis; //跨域 在 config/index.js 找到proxyTable
 } else if (process.env.NODE_ENV == 'debug') {
-    axios.defaults.baseURL = '/api';
+    axios.defaults.baseURL = apis
 } else if (process.env.NODE_ENV == 'production') {
-    axios.defaults.baseURL = '/api';
+    axios.defaults.baseURL = apis
 }
 
 axios.defaults.timeout = 10000; //请求超时

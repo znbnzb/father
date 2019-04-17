@@ -3,5 +3,5 @@
  */
 import {get, post } from './http'
 
-export const apiAddress = p => get('login', p);
+export const apiAddress = data => get('login', data);
 // export const apiAddress2 = p => post('_User', p);
