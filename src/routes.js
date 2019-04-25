@@ -13,7 +13,7 @@
    *  */
   import patient from '@/components/patient'
   import M_case from '@/components/M_case'
-  import cruor from '@/components/cruor'
+  import report from '@/components/report'
   import illness from '@/components/illness'
   import hospital from '@/components/hospital'
   import operation from '@/components/operation'
@@ -41,14 +41,14 @@
           path: '/dd',
           name: 'dd',
           component: DD
-      }, {
+      },
+      {
           path: '/Login',
           name: 'Login',
           component: Login,
-          meta: { navShow: false }
       },
 
-      /** 
+      /**
        *  首页index>>>>>>
        * 患者简介、病例档案
        * 凝血指标、疾病简介
@@ -56,39 +56,33 @@
        *  */
       {
           path: '/patient',
-          name: "patient",
+          name: 'patient',
           component: patient,
-          meta: { navShow: false }
       },
       {
           path: '/M_case',
-          name: "M_case",
+          name: 'M_case',
           component: M_case,
-          meta: { navShow: false }
       },
       {
-          path: '/cruor',
-          name: "cruor",
-          component: cruor,
-          meta: { navShow: false }
+          path: '/report',
+          name: 'report',
+          component: report,
       },
       {
           path: '/illness',
-          name: "illness",
+          name: 'illness',
           component: illness,
-          meta: { navShow: false }
       },
       {
           path: '/hospital',
-          name: "hospital",
+          name: 'hospital',
           component: hospital,
-          meta: { navShow: false }
       },
       {
           path: '/operation',
-          name: "operation",
+          name: 'operation',
           component: operation,
-          meta: { navShow: false }
       },
 
       /**
@@ -99,9 +93,9 @@
        *  */
       {
           path: '/',
-          name: "homeLink",
+          name: 'homeLink',
           component: Home
-
+              //   redirect: '/'
       },
       {
           path: '/recent',
@@ -112,5 +106,9 @@
           path: '/M_history',
           name: 'M_history',
           component: M_history
+      },
+      {
+          path: '/',
+          redirect: '/homeLink'
       }
   ]

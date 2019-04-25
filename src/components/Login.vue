@@ -1,50 +1,37 @@
 <template>
     <van-row>
-        <van-col
-            span="20"
-            class="login_wrap"
-        >
+        <van-col span="20" class="login_wrap">
+            <!-- logon -->
             <div class="logo">
-                <img
-                    src="../assets/logo.png"
-                    alt=""
-                >
+                <img src="../assets/login.png" alt="">
             </div>
-            <div class="login_text">
-                体检项目综合平台
+            <!-- logonText -->
+            <div class="loginText">
+                <p>定期体检项目综合平台</p>
+                <div class="loginHr"></div>
+                <span>wwww.lyfirst.top</span>
             </div>
-            <div class="login">
-                <van-cell-group>
-                    <van-field
-                        v-model="users.username"
-                        required
-                        clearable
-                        label="用户名"
-                        right-icon="question-o"
-                        placeholder="请输入用户名"
-                        @click-right-icon="$toast('question')"
-                    />
-
-                    <van-field
-                        v-model="users.password"
-                        type="password"
-                        label="密码"
-                        placeholder="请输入密码"
-                        required
-                    />
-                </van-cell-group>
-            </div>
-            <div class="login_btn">
-                <van-button size="large" type='primary' @click="LoginUser">立即登录</van-button>
-            </div>
-            
+            <!-- 登录表单 -->
+            <form action="" class="loginForm">
+                <section class="login_set">
+                    <div class="form_group">
+                        <i class="userimg"></i>
+                        <input type="text" placeholder="请输入用户名" v-model='users.username'>
+                    </div>
+                    <div class="form_group">
+                        <i class="pawssimg"></i>
+                        <input type="password" placeholder="请输入密码" v-model="users.password">
+                    </div>
+                </section>
+                <button type="button" class="btn" @click="LoginUser">登录</button>
+            </form>
         </van-col>
     </van-row>
 </template>
 
 <script>
 import { Toast } from "vant";
-import { apiAddress, apiAddress2 } from "../request/api";
+import { Logininfo } from "../request/api";
 export default {
     data() {
         return {
@@ -52,7 +39,6 @@ export default {
                 username: "admin",
                 password: "111111"
             },
-   
         };
     },
 
@@ -60,29 +46,26 @@ export default {
 
     },
     methods: {
-     
         LoginUser: function() {
             var _this = this;
             if(_this.users.username ==='' || _this.users.password ==='' ){
                 Toast.fail('账号或密码不能为空');
             }else {
-                apiAddress(_this.users).then(res => {
+                Logininfo(_this.users).then(res => {
                 console.log(res);
                 window.localStorage.setItem('token', res.sessionToken);
                 this.$store.dispatch("setUserToken", res.sessionToken);
                 Toast.loading({
                 mask: true,
                 message: '登录成功',
-                duration:2000
+                duration:1000
                 });
                 setTimeout(()=>{
                     _this.$router.push('/'); 
-                },2000)
+                },1000)
             });
             }  
         },
-        
-      
     }
 };
 </script>
@@ -95,47 +78,100 @@ export default {
     align-items: center;
     width: 100%;
     height: 100%;
-    padding:15% 5% 2% 5%;
+    padding:0% 5% 2% 5%;
     position: fixed;
-    background-image: url(../assets/bg2.png);
+    background-image: url(../assets/loginbg.jpg);
     /* background-color:lightgrey; */
     background-size: 100% 100%;
 }
 /* Logo */
 .login_wrap .logo {
-    width: 165px;
-    height: 150px;
+    width: 236px;
+    height: 236px;
 }
 .login_wrap .logo img {
     width: 100%;
     height: 100%;
 }
-/* Login-text */
-.login_wrap .login_text {
-    font-size: 28px;
-    margin-top: 5%;
-    margin-bottom:7%;
-    color: white;
+/* loginText */
+.login_wrap .loginText{
+    color:#ffff;
+    letter-spacing: 0.2rem;
+    margin-top:-0.7rem;
+    font-size:1.8rem;
+    text-align: center;
 }
-/* Login */
-.login_wrap .login {
-    width:90%;
-    color: white;
+.login_wrap .loginText p{
+    color:#ffff;
 }
-.login_wrap .login_btn {
-    margin-top:7%;
-    width:90%;
+.login_wrap .loginText .loginHr{
+    width: 100%;
+    margin-top:0.2rem;
+    height:3px;
+    margin-bottom: -0.4rem;
+    background-color:#ffff;
 }
-.loading_warp{
-    background-color:black;
-     position:fixed;
+.login_wrap .loginText span{
+    font-size:1.2rem;
+    color:#ffff;
+}
+/* 登录表单 */
+.loginForm{
+    box-sizing:border-box;
     width:100%;
-    height:100%;
-    opacity: 0.2;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top:5rem;
 }
-.loading_item{
+.loginForm .login_set{
+    display: flex;
+    width:85%;
+    flex-direction: column;
+    align-items: center;
+}
+.loginForm .form_group{
+    width:100%;
+    position: relative;
+    height: 3.5rem;
+}
+.loginForm .form_group i{
     position:absolute;
-     bottom:50%;margin-bottom:-h/2;
- right:50%;margin-right:-w/2
+    left:0rem;
+    display: inline-block;
+    width:20px;
+    height:20px;
+}
+.loginForm .form_group .userimg{
+    background-image: url(../assets/user.png);
+    background-size:100% 100%;
+}
+.loginForm .form_group .pawssimg{
+    background-image: url(../assets/pawss.png);
+    background-size:100% 100%;
+}
+.loginForm .form_group input{
+    width:100%;
+    border:0px;
+    color:#999999;
+    font-size:0.9rem;
+    padding-left:2rem;
+    background:none;
+    border-bottom: 1px solid #4ce4b1;
+}
+.loginForm .form_group input:focus{
+    border-bottom:1px solid #999999;
+}
+.loginForm .btn {
+    border:none;
+    background:none;
+    background-color:#4ce4b1;
+    color:#ffff;
+    font-size:1.2rem;
+    border-radius: 2rem;
+    width:85%;
+    height:3.3rem;
+    letter-spacing: 0.5rem;
+    margin-left:0.7rem;
 }
 </style>

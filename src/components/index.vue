@@ -16,13 +16,13 @@
         <!-- 报告 -->
        <section class="report">
            <div class="box_left  boxsize">
-               <router-link :to="{name:'recent'}" tag="div" >
+               <router-link :to="{name:'report'}" tag="div" >
                    <span>
                         <img src="../../static/report.png" alt="">
                    </span>
                    <div>
-                        <h4>检查报告</h4>
-                        <h5>文字说明</h5>
+                        <h4>检验报告单</h4>
+                        <h6>更新:2019年4月09日</h6>
                    </div>        
                </router-link>
            </div>
@@ -32,13 +32,13 @@
                         <img src="../../static/report_2.png" alt="">
                    </span>
                    <div>
-                        <h4>检验报告</h4>
-                        <h5>文字说明</h5>
+                        <h4>检查报告单</h4>
+                        <h6>文字说明</h6>
                    </div>
                </router-link>
            </div>
        </section>
-   <foot1></foot1>
+       <foot1 :active="0"></foot1>
     </div>
 </template>
 
@@ -52,8 +52,7 @@ export default {
                 "../../static/2.jpg",
                 "../../static/3.jpg",
                 "../../static/4.jpg"
-            ],
-            
+            ],   
         };
     },
     created() {
@@ -110,7 +109,7 @@ export default {
 .boxsize>div>div>h4{
     color:#454545;
 }
-.boxsize>div>div>h5{
+.boxsize>div>div>h6{
     color:#929292;
 }
 .boxsize>div>span{

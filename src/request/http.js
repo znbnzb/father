@@ -16,8 +16,8 @@ const tip = msg => {
     });
 }
 
-const bomId = "9aa35c79101ae393a3cae8480f491f40";
-const bomkey = "7c3962ad543cdc756e5a3d1ba40be2c3";
+const bomId = "36238506614a846e385131e37df82705";
+const bomkey = "a6205cbd0eaafa2e413978e6fc7e80ba";
 const apis = process.env.API_ROOT;
 console.log(apis)
 axios.defaults.headers.post["Content-type"] = 'application/json';
@@ -48,11 +48,12 @@ axios.interceptors.request.use(
         // 即使本地存在token，也有可能token是过期的，所以在响应拦截器中要对返回状态进行判断
         // const token = store.state.token;
         const token = store.state.token;
-        if (token) {
-            config.headers.Authorization = token
-        }
+        // if (token) {
+        //     config.headers.Authorization = token
+        // }
         // 将请求的配置上Bomb的官方配置
         config.headers.get["X-Bmob-Application-Id"] = bomId;
+        config.headers.get["X-Bmob-REST-API-Key"] = bomkey;
         config.headers.get["X-Bmob-REST-API-Key"] = bomkey;
 
         return config;

@@ -1,27 +1,24 @@
 <template>
  <!-- 根据路由属性meta.navShaow来判断是否显示底部组件 -->
-        <van-tabbar v-model="active" active-color="#39d167" v-if="$route.meta.navShow==undefined||$route.meta.navShow" >
+        <van-tabbar :value="active" active-color="#A7C942" >
             <van-tabbar-item icon="wap-home" :to="{name:'homeLink'}">首页</van-tabbar-item>
             <van-tabbar-item 
-                icon="clock"
+                icon="records"
                 :to="{name:'recent'}"
-            >近况</van-tabbar-item>
+            >病例档案</van-tabbar-item>
             <van-tabbar-item 
-                icon="like-o"
+                icon="contact"
                 :to="{name:'M_history'}"
-            >病史</van-tabbar-item>
+            >个人中心</van-tabbar-item>
         </van-tabbar>
 
 </template>
 
 <script>
 export default {
+    props:['active'],
     name: "foot1",
-    data() {
-        return {
-            active:0
-        } 
-    }
+
 };
 </script>
 

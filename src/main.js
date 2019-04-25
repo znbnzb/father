@@ -23,8 +23,8 @@ Vue.use(Lazyload);
 
 Vue.config.productionTip = false
 const router = new VueRouter({
-    routes,
-    mode: 'history'
+    mode: 'history',
+    routes
 })
 
 router.beforeEach((to, from, next) => {

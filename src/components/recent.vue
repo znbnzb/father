@@ -1,6 +1,7 @@
 <template>
     <div>
-        <p>近况：recent</p>
+        <p>病例档案正在建设中...</p>
+        <foot1 :active="1"></foot1>
     </div>
 </template>
 

@@ -3,5 +3,5 @@
  */
 import {get, post } from './http'
 
-export const apiAddress = data => get('login', data);
-// export const apiAddress2 = p => post('_User', p);
+export const Logininfo = data => get('login', data); //登录
+export const getreport = data => get('classes/base', data) //获取报告详情
