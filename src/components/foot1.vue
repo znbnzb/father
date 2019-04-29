@@ -1,6 +1,5 @@
 <template>
- <!-- 根据路由属性meta.navShaow来判断是否显示底部组件 -->
-        <van-tabbar :value="active" active-color="#A7C942" >
+        <van-tabbar :value="active" active-color="#A7C942">
             <van-tabbar-item icon="wap-home" :to="{name:'homeLink'}">首页</van-tabbar-item>
             <van-tabbar-item 
                 icon="records"
@@ -11,7 +10,6 @@
                 :to="{name:'M_history'}"
             >个人中心</van-tabbar-item>
         </van-tabbar>
-
 </template>
 
 <script>

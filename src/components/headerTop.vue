@@ -1,7 +1,7 @@
 <template>
     <div>
-        <van-nav-bar left-text="返回" left-arrow  @click-left="onClickLeft">
-            <span slot="title">{{title2}}</span>
+        <van-nav-bar  left-text="返回" left-arrow  @click-left="onClickLeft">
+            <span slot="title">{{title}}</span>
         </van-nav-bar>
     </div>
 </template>
@@ -9,7 +9,7 @@
 <script>
 import { Toast } from 'vant';
 export default {
-    props:['title2'],
+    props:['title'],
     methods: {
         //   返回上一页
         onClickLeft:function(){
@@ -27,4 +27,5 @@ export default {
 };
 </script>
 <style  scoped>
+
 </style>
